@@ -33,4 +33,22 @@ class Place extends Model
     {
         return $this->belongsToMany(Facility::class);
     }
+
+    public function statusLabel(): string
+    {
+        return match ($this->status) {
+            self::STATUS_SUDAH => 'Sudah Diverifikasi',
+            self::STATUS_PERIKSA => 'Perlu Diperiksa',
+            default => 'Belum Diverifikasi',
+        };
+    }
+
+    public function statusBadgeClass(): string
+    {
+        return match ($this->status) {
+            self::STATUS_SUDAH => 'text-bg-success',
+            self::STATUS_PERIKSA => 'text-bg-danger',
+            default => 'text-bg-warning',
+        };
+    }
 }

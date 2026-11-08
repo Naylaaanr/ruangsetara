@@ -13,9 +13,11 @@
     <div class="card">
         <div class="card-header">Area Pengelola</div>
         <div class="card-body">
-            <p class="mb-1">Pengelola: {{ Auth::user()->name }} ({{ Auth::user()->email }})</p>
-            <p class="text-muted mb-0">
-                Menu pengelolaan data tempat, fasilitas, dan statistik verifikasi akan dibangun di area ini pada tahap berikutnya.
+            <p class="mb-3">Pengelola: {{ Auth::user()->name }} ({{ Auth::user()->email }})</p>
+            <a href="{{ route('admin.places.index') }}" class="btn btn-primary">Kelola Data Tempat</a>
+            <a href="{{ route('admin.places.create') }}" class="btn btn-outline-primary">Tambah Tempat Baru</a>
+            <p class="text-muted mt-3 mb-0">
+                Statistik tempat dan status verifikasi akan ditampilkan di sini pada sub-tahap 4E.
             </p>
         </div>
     </div>
