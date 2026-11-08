@@ -23,6 +23,14 @@
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                     @endauth
+                    @auth
+                        @if (Auth::user()->isAdmin())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.dashboard') }}">Panel Admin</a>
+                            </li>
+                        @endif
+                    @endauth
+
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @guest
