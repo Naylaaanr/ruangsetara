@@ -1,59 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# RuangSetara
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Platform Pencarian dan Rekomendasi Tempat Ramah Disabilitas di Kabupaten Kuningan, Jawa Barat.**
 
-## About Laravel
+RuangSetara adalah aplikasi web full-stack yang dibangun sebagai proyek individu mata kuliah Cyber Security. Aplikasi ini membantu penyandang disabilitas menemukan tempat publik (kantor layanan, fasilitas kesehatan, tempat ibadah, ruang publik, dan lainnya) yang fasilitasnya sesuai dengan kebutuhan aksesibilitas mereka.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Latar Belakang dan Tujuan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Informasi tentang aksesibilitas tempat publik di Kabupaten Kuningan belum terhimpun dalam satu platform. Pengguna kursi roda, tunanetra, dan tunarungu sering harus menebak apakah sebuah tempat memiliki jalur landai, guiding block, atau informasi visual sebelum memutuskan datang. RuangSetara menghimpun data fasilitas aksesibilitas tiap tempat, memverifikasinya, dan menyajikan rekomendasi berdasarkan kecocokan fasilitas dengan kebutuhan pengguna.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+Fitur yang dibangun pada proyek ini (dikembangkan dan didokumentasikan bertahap):
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. Registrasi dan login pengguna
+2. Hak akses berdasarkan peran (role): user dan admin
+3. Pencarian tempat ramah disabilitas
+4. Filter berdasarkan kategori tempat dan fasilitas aksesibilitas
+5. Halaman detail tempat beserta fasilitasnya
+6. Rekomendasi tempat berdasarkan kecocokan fasilitas dengan kebutuhan pengguna (Skor Aksesibilitas)
+7. CRUD data tempat dan fasilitas oleh admin
+8. Dashboard admin berisi statistik jumlah tempat dan status verifikasi
+9. Status data tempat: belum diverifikasi, sudah diverifikasi, dan perlu diperiksa
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Fasilitas aksesibilitas yang dicatat per tempat antara lain: jalur landai (ramp), toilet aksesibel, guiding block, informasi braille, informasi visual, dan fasilitas pendukung lainnya. Pencarian dapat disesuaikan dengan kebutuhan: disabilitas fisik/pengguna kursi roda, tunanetra/keterbatasan penglihatan, dan tunarungu/keterbatasan pendengaran.
 
-## Laravel Sponsors
+## Teknologi yang Digunakan
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Backend: Laravel 12 (PHP 8.2)
+- Database: MySQL / MariaDB
+- Frontend: Laravel Blade dan Bootstrap 5
+- Version control: Git dan GitHub
+- Lingkungan lokal: XAMPP dan Visual Studio Code
 
-### Premium Partners
+## Cara Menjalankan di Komputer Lokal
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Prasyarat: PHP 8.2 atau lebih baru, Composer, dan MySQL/MariaDB (misalnya dari XAMPP).
 
-## Contributing
+1. Clone repository ini: git clone https://github.com/Naylaaanr/ruangsetara.git
+2. Masuk ke folder proyek: cd ruangsetara
+3. Pasang dependensi PHP: composer install
+4. Salin file konfigurasi contoh: cp .env.example .env
+5. Buat kunci aplikasi: php artisan key:generate
+6. Buat database kosong bernama ruangsetara (misalnya melalui phpMyAdmin)
+7. Atur koneksi database pada file .env (lihat bagian Konfigurasi Environment)
+8. Jalankan migrasi database: php artisan migrate
+9. Jalankan server lokal: php artisan serve
+10. Buka aplikasi di browser: http://127.0.0.1:8000
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Konfigurasi Environment (.env)
 
-## Code of Conduct
+Seluruh nilai rahasia disimpan pada file .env di masing-masing komputer/server dan file tersebut TIDAK di-commit ke repository (dilindungi oleh .gitignore). Variabel yang perlu diatur:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- APP_KEY : kunci enkripsi aplikasi, dibuat oleh perintah php artisan key:generate
+- DB_CONNECTION : mysql
+- DB_HOST : 127.0.0.1
+- DB_PORT : 3306
+- DB_DATABASE : ruangsetara
+- DB_USERNAME : (diisi sesuai pengguna database setempat)
+- DB_PASSWORD : (diisi sesuai kata sandi database setempat, tidak ditulis di dokumen ini)
 
-## Security Vulnerabilities
+## Keamanan yang Diterapkan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Kontrol keamanan yang diterapkan pada aplikasi ini, sesuai persyaratan mata kuliah:
 
-## License
+- Hashing kata sandi dengan bcrypt (bawaan Laravel), kata sandi tidak pernah disimpan sebagai teks biasa
+- Pencegahan SQL injection melalui Eloquent ORM dan parameter binding bawaan Laravel
+- Pencegahan XSS melalui validasi input dan escaping output otomatis Blade ({{ }})
+- Perlindungan CSRF melalui token CSRF bawaan Laravel pada setiap form
+- Pembatasan percobaan login (rate limiting) untuk menahan serangan brute force
+- Kontrol akses berbasis peran (RBAC): halaman dan fungsi admin tidak dapat diakses user biasa
+- Sesi login melalui cookie dengan atribut HttpOnly
+- Secret hanya disimpan di file .env dan tidak diunggah ke GitHub
+- HTTPS aktif pada deployment publik
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Penggunaan AI
+
+Sesuai ketentuan mata kuliah, penggunaan AI pada proyek ini dicantumkan secara terbuka. Penulis menggunakan bantuan AI (Muse dari Meta) untuk:
+
+- Pendampingan langkah demi langkah penggunaan Git/GitHub dan instalasi Laravel dari nol
+- Penjelasan konsep keamanan (hashing, RBAC, CSRF, rate limiting, pengelolaan secret)
+- Penelusuran error berdasarkan pesan error nyata yang muncul, misalnya error Composer "Project directory is not empty" dan timeout unduhan paket
+- Penyusunan draf awal README ini
+
+Contoh prompt utama yang digunakan: "Jelaskan penyebab error Composer ini dan cara mengatasinya tanpa menghapus folder .git" dan "Bimbing saya membuat aplikasi Laravel tahap demi tahap dari nol, satu tahap terverifikasi sebelum lanjut".
+
+Seluruh perintah, kode, dan konfigurasi dijalankan, diuji, dan diverifikasi sendiri oleh penulis dari output nyata di komputer penulis. Tidak ada kata sandi, token, kunci, atau data pribadi yang diberikan kepada AI.
+
+## URL Aplikasi
+
+(Belum tersedia - diisi setelah deployment publik dengan HTTPS selesai.)
+
+## Akun Uji
+
+(Diisi setelah fitur registrasi dan login selesai: satu akun user dan satu akun admin untuk keperluan pengujian dosen.)
+
+## Hasil Self-Testing Keamanan
+
+(Diisi setelah tahap pengujian selesai. Pengujian mencakup minimal 5 skenario: SQL injection, XSS, kontrol akses/IDOR, autentikasi dan sesi, serta HTTPS dan header keamanan, ditambah pemeriksaan secret yang tidak ter-commit dan audit dependensi.)
+
+## Penulis
+
+Nayla Nur Alvi - Repository: https://github.com/Naylaaanr/ruangsetara
