@@ -30,4 +30,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     })->name('dashboard');
 
     Route::resource('places', PlaceController::class)->except(['show']);
+    
 });
+
+Route::get('/tempat', [\App\Http\Controllers\PlaceController::class, 'index'])->name('places.index');
+Route::get('/tempat/{place}', [\App\Http\Controllers\PlaceController::class, 'show'])->name('places.show');
+
