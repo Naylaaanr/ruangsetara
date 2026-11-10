@@ -21,6 +21,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('places.index') }}">Cari Tempat</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('recommendations.index') }}">Rekomendasi</a>
+                    </li>
+
 
                     @auth
                         <li class="nav-item">

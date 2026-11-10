@@ -35,4 +35,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::get('/tempat', [\App\Http\Controllers\PlaceController::class, 'index'])->name('places.index');
 Route::get('/tempat/{place}', [\App\Http\Controllers\PlaceController::class, 'show'])->name('places.show');
+Route::get('/rekomendasi', [\App\Http\Controllers\PlaceController::class, 'recommend'])->name('recommendations.index');
+
 

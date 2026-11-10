@@ -61,4 +61,43 @@ class PlaceController extends Controller
 
         return view('places.show', compact('place'));
     }
+    public function recommend(Request $request)
+{
+    $validated = $request->validate([
+        'need' => ['nullable', 'in:fisik,penglihatan,pendengaran'],
+    ]);
+
+    $needs = [
+        'fisik' => 'Kebutuhan Fisik',
+        'penglihatan' => 'Kebutuhan Penglihatan',
+        'pendengaran' => 'Kebutuhan Pendengaran',
+    ];
+
+    $need = $validated['need'] ?? null;
+    $total = 0;
+    $places = collect();
+
+    if ($need) {
+        $total = Facility::where('need', $need)->count();
+
+        $places = Place::where('status', Place::STATUS_SUDAH)
+            ->with('facilities')
+            ->latest()
+            ->get()
+            ->map(function ($place) use ($need, $total) {
+                $matched = $place->facilities->where('need', $need)->count();
+                $place->matched_count = $matched;
+                $place->total_count = $total;
+                $place->score = $total > 0 ? (int) round($matched / $total * 100) : 0;
+
+                return $place;
+            })
+            ->filter(fn ($place) => $place->score > 0)
+            ->sortByDesc('score')
+            ->values();
+    }
+
+    return view('recommendations.index', compact('places', 'needs', 'need', 'total'));
+}
+
 }
