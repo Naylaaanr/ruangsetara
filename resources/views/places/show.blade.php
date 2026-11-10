@@ -10,6 +10,10 @@
 </div>
 
 <p class="text-muted">{{ $place->address }} — Kecamatan {{ $place->district }}, Kabupaten Kuningan</p>
+@if ($place->photo)
+    <img src="{{ asset('storage/' . $place->photo) }}" class="img-fluid rounded mb-3" alt="Foto {{ $place->name }}">
+@endif
+
 
 @if ($place->description)
     <p>{{ $place->description }}</p>

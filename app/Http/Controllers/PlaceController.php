@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Facility;
 use App\Models\Place;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller

@@ -65,6 +65,15 @@
         <label for="maps_url" class="form-label">Tautan Google Maps <span class="text-muted">(boleh kosong)</span></label>
         <input type="url" class="form-control" id="maps_url" name="maps_url" value="{{ old('maps_url', $place->maps_url ?? '') }}" placeholder="https://maps.google.com/...">
     </div>
+    <div class="mb-3">
+        <label for="photo" class="form-label">Foto tempat</label>
+        <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+        <div class="form-text">Format JPG, JPEG, PNG, atau WebP, maksimal 2 MB. Kosongkan jika tidak ingin mengganti foto.</div>
+        @if (!empty($place) && $place->photo)
+            <img src="{{ asset('storage/' . $place->photo) }}" alt="Foto {{ $place->name }}" class="img-thumbnail mt-2" style="max-width: 240px;">
+        @endif
+    </div>
+
 </div>
 
 <fieldset class="mb-3">

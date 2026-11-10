@@ -26,6 +26,9 @@
         <p class="text-muted">Diurutkan dari skor tertinggi untuk {{ $needs[$need] }} (total {{ $total }} fasilitas).</p>
         @foreach ($places as $place)
             <div class="card mb-3">
+                @if ($place->photo)
+                    <img src="{{ asset('storage/' . $place->photo) }}" class="card-img-top" alt="Foto {{ $place->name }}" style="height: 160px; object-fit: cover;">
+                @endif
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start gap-2">
                         <div>

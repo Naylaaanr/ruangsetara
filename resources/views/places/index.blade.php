@@ -51,6 +51,9 @@
         @foreach ($places as $place)
             <div class="col">
                 <div class="card h-100">
+                    @if ($place->photo)
+                        <img src="{{ asset('storage/' . $place->photo) }}" class="card-img-top" alt="Foto {{ $place->name }}" style="height: 180px; object-fit: cover;">
+                    @endif
                     <div class="card-body">
                         <span class="badge text-bg-primary mb-2">{{ $place->category->name }}</span>
                         <h2 class="h5 card-title">{{ $place->name }}</h2>

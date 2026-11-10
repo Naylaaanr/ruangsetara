@@ -36,6 +36,9 @@ class PlaceController extends Controller
         $facilityIds = $validated['facilities'] ?? [];
         unset($validated['facilities']);
 
+        if ($request->hasFile('photo')) {
+            $validated['photo'] = $request->file('photo')->store('places', 'public');
+        }
         $place = Place::create($validated);
         $place->facilities()->sync($facilityIds);
 
@@ -59,6 +62,15 @@ class PlaceController extends Controller
 
         $facilityIds = $validated['facilities'] ?? [];
         unset($validated['facilities']);
+        if ($request->hasFile('photo')) {
+            if ($place->photo) {
+                Storage::disk('public')->delete($place->photo);
+            }
+            $validated['photo'] = $request->file('photo')->store('places', 'public');
+        } else {
+            unset($validated['photo']);
+        }
+
 
         $place->update($validated);
         $place->facilities()->sync($facilityIds);
@@ -70,6 +82,9 @@ class PlaceController extends Controller
 
     public function destroy(Place $place)
     {
+        if ($place->photo) {
+            Storage::disk('public')->delete($place->photo);
+        }
         $place->delete();
 
         return redirect()
@@ -95,6 +110,7 @@ class PlaceController extends Controller
             ])],
             'facilities' => ['nullable', 'array'],
             'facilities.*' => ['exists:facilities,id'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }
 }

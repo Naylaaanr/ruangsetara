@@ -6,7 +6,7 @@
 <div class="container py-4">
     <h1 class="h3 mb-3">Tambah Tempat Baru</h1>
 
-    <form action="{{ route('admin.places.store') }}" method="POST">
+    <form action="{{ route('admin.places.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('admin.places._form')
     </form>

@@ -21,6 +21,7 @@ class Place extends Model
         'phone',
         'opening_hours',
         'maps_url',
+        'photo',
         'status',
     ];
 
