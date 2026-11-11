@@ -5,8 +5,21 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $latestPlaces = \App\Models\Place::where('status', \App\Models\Place::STATUS_SUDAH)
+        ->with(['category', 'facilities'])
+        ->latest()
+        ->take(3)
+        ->get();
+
+    $stats = [
+        'places' => \App\Models\Place::where('status', \App\Models\Place::STATUS_SUDAH)->count(),
+        'categories' => \App\Models\Category::count(),
+        'facilities' => \App\Models\Facility::count(),
+    ];
+
+    return view('home', compact('latestPlaces', 'stats'));
 })->name('home');
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
